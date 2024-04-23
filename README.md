@@ -1,0 +1,2 @@
+# flutter_infinite_marquee
+ flutter_infinite_marquee
