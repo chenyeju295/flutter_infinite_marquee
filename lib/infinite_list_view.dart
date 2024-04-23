@@ -115,7 +115,8 @@ class InfiniteListView extends StatefulWidget {
 class _InfiniteListViewState extends State<InfiniteListView> {
   InfiniteScrollController? _controller;
 
-  InfiniteScrollController get _effectiveController => widget.controller ?? _controller!;
+  InfiniteScrollController get _effectiveController =>
+      widget.controller ?? _controller!;
 
   @override
   void initState() {
@@ -147,7 +148,8 @@ class _InfiniteListViewState extends State<InfiniteListView> {
     final List<Widget> slivers = _buildSlivers(context, negative: false);
     final List<Widget> negativeSlivers = _buildSlivers(context, negative: true);
     final AxisDirection axisDirection = _getDirection(context);
-    final scrollPhysics = widget.physics ?? const AlwaysScrollableScrollPhysics();
+    final scrollPhysics =
+        widget.physics ?? const AlwaysScrollableScrollPhysics();
     return Scrollable(
       axisDirection: axisDirection,
       controller: _effectiveController,
@@ -194,7 +196,8 @@ class _InfiniteListViewState extends State<InfiniteListView> {
   }
 
   AxisDirection _getDirection(BuildContext context) {
-    return getAxisDirectionFromAxisReverseAndDirectionality(context, widget.scrollDirection, widget.reverse);
+    return getAxisDirectionFromAxisReverseAndDirectionality(
+        context, widget.scrollDirection, widget.reverse);
   }
 
   List<Widget> _buildSlivers(BuildContext context, {bool negative = false}) {
@@ -202,15 +205,20 @@ class _InfiniteListViewState extends State<InfiniteListView> {
     final padding = widget.padding ?? EdgeInsets.zero;
     return <Widget>[
       SliverPadding(
-        padding:
-            negative ? padding - EdgeInsets.only(bottom: padding.bottom) : padding - EdgeInsets.only(top: padding.top),
+        padding: negative
+            ? padding - EdgeInsets.only(bottom: padding.bottom)
+            : padding - EdgeInsets.only(top: padding.top),
         sliver: (itemExtent != null)
             ? SliverFixedExtentList(
-                delegate: negative ? negativeChildrenDelegate : positiveChildrenDelegate,
+                delegate: negative
+                    ? negativeChildrenDelegate
+                    : positiveChildrenDelegate,
                 itemExtent: itemExtent,
               )
             : SliverList(
-                delegate: negative ? negativeChildrenDelegate : positiveChildrenDelegate,
+                delegate: negative
+                    ? negativeChildrenDelegate
+                    : positiveChildrenDelegate,
               ),
       )
     ];
@@ -222,7 +230,9 @@ class _InfiniteListViewState extends State<InfiniteListView> {
         final separatorBuilder = widget.separatorBuilder;
         if (separatorBuilder != null) {
           final itemIndex = (-1 - index) ~/ 2;
-          return index.isOdd ? widget.itemBuilder(context, itemIndex) : separatorBuilder(context, itemIndex);
+          return index.isOdd
+              ? widget.itemBuilder(context, itemIndex)
+              : separatorBuilder(context, itemIndex);
         } else {
           return widget.itemBuilder(context, -1 - index);
         }
@@ -240,10 +250,14 @@ class _InfiniteListViewState extends State<InfiniteListView> {
       (separatorBuilder != null)
           ? (BuildContext context, int index) {
               final itemIndex = index ~/ 2;
-              return index.isEven ? widget.itemBuilder(context, itemIndex) : separatorBuilder(context, itemIndex);
+              return index.isEven
+                  ? widget.itemBuilder(context, itemIndex)
+                  : separatorBuilder(context, itemIndex);
             }
           : widget.itemBuilder,
-      childCount: separatorBuilder == null ? itemCount : (itemCount != null ? math.max(0, itemCount * 2 - 1) : null),
+      childCount: separatorBuilder == null
+          ? itemCount
+          : (itemCount != null ? math.max(0, itemCount * 2 - 1) : null),
       addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
       addRepaintBoundaries: widget.addRepaintBoundaries,
     );
@@ -252,14 +266,22 @@ class _InfiniteListViewState extends State<InfiniteListView> {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(EnumProperty<Axis>('scrollDirection', widget.scrollDirection));
-    properties.add(FlagProperty('reverse', value: widget.reverse, ifTrue: 'reversed', showName: true));
+    properties
+        .add(EnumProperty<Axis>('scrollDirection', widget.scrollDirection));
+    properties.add(FlagProperty('reverse',
+        value: widget.reverse, ifTrue: 'reversed', showName: true));
+    properties.add(DiagnosticsProperty<ScrollController>(
+        'controller', widget.controller,
+        showName: false, defaultValue: null));
+    properties.add(DiagnosticsProperty<ScrollPhysics>('physics', widget.physics,
+        showName: false, defaultValue: null));
+    properties.add(DiagnosticsProperty<EdgeInsetsGeometry>(
+        'padding', widget.padding,
+        defaultValue: null));
     properties.add(
-        DiagnosticsProperty<ScrollController>('controller', widget.controller, showName: false, defaultValue: null));
-    properties.add(DiagnosticsProperty<ScrollPhysics>('physics', widget.physics, showName: false, defaultValue: null));
-    properties.add(DiagnosticsProperty<EdgeInsetsGeometry>('padding', widget.padding, defaultValue: null));
-    properties.add(DoubleProperty('itemExtent', widget.itemExtent, defaultValue: null));
-    properties.add(DoubleProperty('cacheExtent', widget.cacheExtent, defaultValue: null));
+        DoubleProperty('itemExtent', widget.itemExtent, defaultValue: null));
+    properties.add(
+        DoubleProperty('cacheExtent', widget.cacheExtent, defaultValue: null));
   }
 }
 
@@ -273,7 +295,8 @@ class InfiniteScrollController extends ScrollController {
   });
 
   @override
-  ScrollPosition createScrollPosition(ScrollPhysics physics, ScrollContext context, ScrollPosition? oldPosition) {
+  ScrollPosition createScrollPosition(ScrollPhysics physics,
+      ScrollContext context, ScrollPosition? oldPosition) {
     return _InfiniteScrollPosition(
       physics: physics,
       context: context,

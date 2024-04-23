@@ -1,5 +1,5 @@
 name: flutter_infinite_marquee
-description: "A new Flutter package project."
+description: "A marquee component that provides automatic scrolling functionality, scrolling looping text or widgets onto the screen. It offers customizations for scroll direction, step length, frequency, and supports both click and swipe interactions."
 version: 0.0.1
 homepage: "https://github.com/chenyeju295/flutter_infinite_marquee"
 

@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'infinite_list_view.dart';
 
+/// A marquee component that provides automatic scrolling functionality, scrolling looping text or widgets onto the screen.
+/// It offers customizations for scroll direction, step length, frequency, and supports both click and swipe interactions.
 class InfiniteMarquee extends StatefulWidget {
   /// The distance of each step, default value is 1.
   /// When it is a negative number, the movement is in the reverse direction.
@@ -24,6 +26,7 @@ class InfiniteMarquee extends StatefulWidget {
   /// The direction of scrolling.
   final Axis scrollDirection;
 
+  /// create
   const InfiniteMarquee({
     super.key,
     required this.itemBuilder,
@@ -39,14 +42,20 @@ class InfiniteMarquee extends StatefulWidget {
 }
 
 class _InfiniteMarqueeState extends State<InfiniteMarquee> {
+  /// InfiniteScrollController
   late InfiniteScrollController _controller;
+
+  /// 自动滚动定时器
   late Timer _timer;
+
+  /// 是否停止滚动
   bool stopScroll = false;
 
   @override
   void initState() {
     super.initState();
-    _controller = InfiniteScrollController(initialScrollOffset: widget.initialScrollOffset);
+    _controller = InfiniteScrollController(
+        initialScrollOffset: widget.initialScrollOffset);
     _startScrollTimer();
   }
 
@@ -66,6 +75,7 @@ class _InfiniteMarqueeState extends State<InfiniteMarquee> {
     super.dispose();
   }
 
+  /// 处理滚动事件
   bool _onNotification(ScrollNotification notification) {
     if (notification is ScrollStartNotification) {
       _timer.cancel();
@@ -77,12 +87,9 @@ class _InfiniteMarqueeState extends State<InfiniteMarquee> {
     return false;
   }
 
+  /// 停止滚动
   _stopScroll(bool value) {
     stopScroll = value;
-  }
-
-  set scrollOffset(double value) {
-    _controller.jumpTo(value);
   }
 
   @override

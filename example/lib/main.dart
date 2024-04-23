@@ -30,7 +30,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<String> _items = ['风流倜傥', '卧虎藏龙', '披荆斩棘', '出类拔萃', '潜移默化', '悬壶问道', '指鹿为马', '画龙点睛'];
+  final List<String> _items = [
+    '风流倜傥',
+    '卧虎藏龙',
+    '披荆斩棘',
+    '出类拔萃',
+    '潜移默化',
+    '悬壶问道',
+    '指鹿为马',
+    '画龙点睛'
+  ];
 
   void _showToast(String item) {
     showDialog<void>(
@@ -51,24 +60,14 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           children: <Widget>[
-            Container(
-                margin: const EdgeInsets.only(top: 20),
-                height: 50,
-                child: InfiniteMarquee(
-                  itemBuilder: (BuildContext context, int index) {
-                    String item = _items[index % _items.length];
-                    return GestureDetector(
-                      onTap: () {
-                        _showToast(item);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        color: Colors.primaries[index % Colors.primaries.length],
-                        child: Center(child: Text(item, style: const TextStyle(fontSize: 20, color: Colors.white))),
-                      ),
-                    );
-                  },
-                )),
+            SizedBox(
+              height: 50,
+              child: InfiniteMarquee(
+                itemBuilder: (BuildContext context, int index) {
+                  return Text('Hello, world! $index');
+                },
+              ),
+            ),
             Container(
                 height: 50,
                 margin: const EdgeInsets.only(top: 20),
@@ -82,8 +81,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(10),
-                        color: Colors.primaries[index % Colors.primaries.length],
-                        child: Center(child: Text(item, style: const TextStyle(fontSize: 20, color: Colors.white))),
+                        color:
+                            Colors.primaries[index % Colors.primaries.length],
+                        child: Center(
+                            child: Text(item,
+                                style: const TextStyle(
+                                    fontSize: 20, color: Colors.white))),
                       ),
                     );
                   },
@@ -108,8 +111,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                           child: Container(
                             padding: const EdgeInsets.all(10),
-                            color: Colors.primaries[index % Colors.primaries.length],
-                            child: Center(child: Text(item, style: const TextStyle(fontSize: 20, color: Colors.white))),
+                            color: Colors
+                                .primaries[index % Colors.primaries.length],
+                            child: Center(
+                                child: Text(item,
+                                    style: const TextStyle(
+                                        fontSize: 20, color: Colors.white))),
                           ),
                         );
                       },
@@ -129,8 +136,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                           child: Container(
                             padding: const EdgeInsets.all(10),
-                            color: Colors.primaries[index % Colors.primaries.length],
-                            child: Center(child: Text(item, style: const TextStyle(fontSize: 20, color: Colors.white))),
+                            color: Colors
+                                .primaries[index % Colors.primaries.length],
+                            child: Center(
+                                child: Text(item,
+                                    style: const TextStyle(
+                                        fontSize: 20, color: Colors.white))),
                           ),
                         );
                       },
