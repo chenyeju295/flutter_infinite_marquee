@@ -1,3 +1,12 @@
+
+
+
+
+## 0.0.2
+
+* Document updates.
+
+
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Initial release.
