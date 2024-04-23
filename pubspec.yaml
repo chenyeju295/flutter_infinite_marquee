@@ -4,7 +4,7 @@ version: 0.0.1
 homepage: "https://github.com/chenyeju295/flutter_infinite_marquee"
 
 environment:
-  sdk: '>=2.12.0 <4.0.0'
+  sdk: '>=2.17.0 <4.0.0'
 
 dependencies:
   flutter:
