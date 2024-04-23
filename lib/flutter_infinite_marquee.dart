@@ -1,64 +1,62 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
 import 'infinite_list_view.dart';
 
-class FlutterInfiniteMarquee extends StatefulWidget {
-  /// 每次移动步长,默认0.5,越大越快
+class InfiniteMarquee extends StatefulWidget {
+  /// The distance of each step, default value is 1.
+  /// When it is a negative number, the movement is in the reverse direction.
   final double stepOffset;
 
-  /// 自定义内容
+  /// The frequency of auto scrolling, default value is 20 milliseconds.
+  /// Works in conjunction with [stepOffset].
+  final Duration frequency;
+
+  /// Item builder function.
   final IndexedWidgetBuilder itemBuilder;
 
-  const FlutterInfiniteMarquee({
+  /// Separator builder function.
+  final IndexedWidgetBuilder? separatorBuilder;
+
+  /// Initial scroll offset when loading.
+  final double initialScrollOffset;
+
+  /// The direction of scrolling.
+  final Axis scrollDirection;
+
+  const InfiniteMarquee({
     super.key,
-    this.stepOffset = 0.5,
     required this.itemBuilder,
+    this.stepOffset = 1,
+    this.initialScrollOffset = 0.0,
+    this.scrollDirection = Axis.horizontal,
+    this.frequency = const Duration(milliseconds: 20),
+    this.separatorBuilder,
   });
 
   @override
-  State<FlutterInfiniteMarquee> createState() => _FlutterInfiniteMarqueeState();
+  State<InfiniteMarquee> createState() => _InfiniteMarqueeState();
 }
 
-class _FlutterInfiniteMarqueeState extends State<FlutterInfiniteMarquee> {
-  // 执行动画的controller
+class _InfiniteMarqueeState extends State<InfiniteMarquee> {
   late InfiniteScrollController _controller;
-  // 定时器timer
   late Timer _timer;
-  // 定时器时间
-  Duration duration = const Duration(milliseconds: 30);
-  // 手势打断定时器
-  bool timerStop = false;
-  // 执行位移开始的偏移量
-  double _offset = 0.0;
+  bool stopScroll = false;
 
   @override
   void initState() {
     super.initState();
-    _controller = InfiniteScrollController(initialScrollOffset: _offset);
+    _controller = InfiniteScrollController(initialScrollOffset: widget.initialScrollOffset);
     _startScrollTimer();
   }
 
-  /// 开启定时器
+  /// 启动自动滚动定时器
   _startScrollTimer() {
-    _timer = Timer.periodic(duration, (timer) {
-      _autoScroll();
+    _timer = Timer.periodic(widget.frequency, (timer) {
+      if (stopScroll == false) {
+        _controller.jumpTo(_controller.offset + widget.stepOffset);
+      }
     });
-  }
-
-  ///停止定时器
-  _stopScrollTimer() {
-    _timer.cancel();
-  }
-
-  /// 自动滚动
-  _autoScroll() {
-    double newOffset = _controller.offset + widget.stepOffset;
-    if (timerStop == false) {
-      _offset = newOffset;
-      _controller.jumpTo(_offset);
-    }
   }
 
   @override
@@ -68,42 +66,39 @@ class _FlutterInfiniteMarqueeState extends State<FlutterInfiniteMarquee> {
     super.dispose();
   }
 
+  bool _onNotification(ScrollNotification notification) {
+    if (notification is ScrollStartNotification) {
+      _timer.cancel();
+    } else if (notification is ScrollUpdateNotification) {
+      _timer.cancel();
+    } else if (notification is ScrollEndNotification) {
+      _startScrollTimer();
+    }
+    return false;
+  }
+
+  _stopScroll(bool value) {
+    stopScroll = value;
+  }
+
+  set scrollOffset(double value) {
+    _controller.jumpTo(value);
+  }
+
   @override
   Widget build(BuildContext context) {
-    /// 监听滚动
     return NotificationListener(
-      onNotification: (ScrollNotification notification) {
-        if (notification is ScrollStartNotification) {
-          _stopScrollTimer();
-        } else if (notification is ScrollUpdateNotification) {
-          _stopScrollTimer();
-        } else if (notification is ScrollEndNotification) {
-          _startScrollTimer();
-        }
-        return false;
-      },
-
-      /// 监听手势
+      onNotification: _onNotification,
       child: Listener(
-        onPointerDown: (detail) => setState(() {
-          timerStop = true;
-        }),
-        onPointerMove: (detail) => setState(() {
-          timerStop = true;
-        }),
-        onPointerUp: (detail) => setState(() {
-          timerStop = false;
-        }),
-        onPointerCancel: (detail) => setState(() {
-          timerStop = false;
-        }),
-
-        /// 无限滚动列表
+        onPointerDown: (_) => _stopScroll(true),
+        onPointerMove: (_) => _stopScroll(true),
+        onPointerUp: (_) => _stopScroll(false),
+        onPointerCancel: (_) => _stopScroll(false),
         child: InfiniteListView.separated(
-          scrollDirection: Axis.horizontal,
+          scrollDirection: widget.scrollDirection,
           controller: _controller,
           itemBuilder: widget.itemBuilder,
-          separatorBuilder: (BuildContext context, int index) => const Divider(height: 0.0),
+          separatorBuilder: widget.separatorBuilder,
           anchor: 0.5,
         ),
       ),

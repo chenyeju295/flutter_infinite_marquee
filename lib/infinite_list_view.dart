@@ -5,10 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
+/// Infinite ListView
+///
+/// ListView that builds its children with to an infinite extent.
+///
 class InfiniteListView extends StatefulWidget {
   /// See [ListView.builder]
   const InfiniteListView.builder({
-    Key? key,
+    super.key,
     this.scrollDirection = Axis.vertical,
     this.reverse = false,
     this.controller,
@@ -26,12 +30,11 @@ class InfiniteListView extends StatefulWidget {
     this.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual,
     this.restorationId,
     this.clipBehavior = Clip.hardEdge,
-  })  : separatorBuilder = null,
-        super(key: key);
+  }) : separatorBuilder = null;
 
   /// See [ListView.separated]
   const InfiniteListView.separated({
-    Key? key,
+    super.key,
     this.scrollDirection = Axis.vertical,
     this.reverse = false,
     this.controller,
@@ -49,8 +52,7 @@ class InfiniteListView extends StatefulWidget {
     this.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual,
     this.restorationId,
     this.clipBehavior = Clip.hardEdge,
-  })  : itemExtent = null,
-        super(key: key);
+  }) : itemExtent = null;
 
   /// See: [ScrollView.scrollDirection]
   final Axis scrollDirection;
@@ -152,6 +154,7 @@ class _InfiniteListViewState extends State<InfiniteListView> {
       physics: scrollPhysics,
       viewportBuilder: (BuildContext context, ViewportOffset offset) {
         return Builder(builder: (BuildContext context) {
+          /// Build negative [ScrollPosition] for the negative scrolling [Viewport].
           final state = Scrollable.of(context);
           final negativeOffset = _InfiniteScrollPosition(
             physics: scrollPhysics,
@@ -264,14 +267,10 @@ class _InfiniteListViewState extends State<InfiniteListView> {
 class InfiniteScrollController extends ScrollController {
   /// Creates a new [InfiniteScrollController]
   InfiniteScrollController({
-    double initialScrollOffset = 0.0,
-    bool keepScrollOffset = true,
-    String? debugLabel,
-  }) : super(
-          initialScrollOffset: initialScrollOffset,
-          keepScrollOffset: keepScrollOffset,
-          debugLabel: debugLabel,
-        );
+    super.initialScrollOffset,
+    super.keepScrollOffset,
+    super.debugLabel,
+  });
 
   @override
   ScrollPosition createScrollPosition(ScrollPhysics physics, ScrollContext context, ScrollPosition? oldPosition) {
@@ -288,21 +287,14 @@ class InfiniteScrollController extends ScrollController {
 
 class _InfiniteScrollPosition extends ScrollPositionWithSingleContext {
   _InfiniteScrollPosition({
-    required ScrollPhysics physics,
-    required ScrollContext context,
-    double? initialPixels = 0.0,
-    bool keepScrollOffset = true,
-    ScrollPosition? oldPosition,
-    String? debugLabel,
+    required super.physics,
+    required super.context,
+    super.initialPixels,
+    super.keepScrollOffset,
+    super.oldPosition,
+    super.debugLabel,
     this.negativeScroll = false,
-  }) : super(
-          physics: physics,
-          context: context,
-          initialPixels: initialPixels,
-          keepScrollOffset: keepScrollOffset,
-          oldPosition: oldPosition,
-          debugLabel: debugLabel,
-        );
+  });
 
   final bool negativeScroll;
 
