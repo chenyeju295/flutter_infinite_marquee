@@ -1,6 +1,7 @@
-# flutter_infinite_marquee
+# [flutter_infinite_marquee](https://pub.dev/packages/flutter_infinite_marquee)
 
 A marquee component that provides the function of automatic scrolling, used to scroll the text or components that play in a loop onto the screen. It provides custom scrolling directions, step lengths, frequencies and other parameters, and also supports click and swipe interactions.
+
 
 ## Installation
 To use this package, add flutter_infinite_marquee as a dependency in the pubspec.yaml file.
