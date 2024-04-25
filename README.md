@@ -29,15 +29,17 @@ SizedBox(
 
 ## Parameters
 - stepOffset: The distance of the scrolling step. The default is 1.
-- frequency: The frequency of automatic scrolling. The default is 20 milliseconds, which controls the scrolling speed in conjunction with the stepOffset parameter.
+- frequency: The frequency of automatic scrolling. The default is 10 milliseconds, which controls the scrolling 
+  speed in conjunction with the stepOffset parameter.
+- duration: The duration of the animation when scrolling.
 - itemBuilder: A function used to build the components of the marquee items.
 - separatorBuilder: A function used to build the components of the separator.
 - initialScrollOffset: The initial scrolling offset when loading.
 - scrollDirection: The direction in which the marquee scrolls.
 
-
 ## Sample diagram
-![img.png](img.png)
+![sample_diagram.gif](sample_diagram.gif)
+
 
 Feel free to customize the marquee component to meet the needs of your application.
 If you encounter any problems or have suggestions for improvement, please create an issue on [GitHub issues](https://github.com/chenyeju295/flutter_infinite_marquee/issues) at any time. Thank you for using!

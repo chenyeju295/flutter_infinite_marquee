@@ -26,6 +26,9 @@ class InfiniteMarquee extends StatefulWidget {
   /// The direction of scrolling.
   final Axis scrollDirection;
 
+  /// The duration of the animation when scrolling.
+  final Duration duration;
+
   /// create
   const InfiniteMarquee({
     super.key,
@@ -33,7 +36,8 @@ class InfiniteMarquee extends StatefulWidget {
     this.stepOffset = 1,
     this.initialScrollOffset = 0.0,
     this.scrollDirection = Axis.horizontal,
-    this.frequency = const Duration(milliseconds: 20),
+    this.frequency = const Duration(milliseconds: 10),
+    this.duration = const Duration(milliseconds: 10),
     this.separatorBuilder,
   });
 
@@ -54,8 +58,7 @@ class _InfiniteMarqueeState extends State<InfiniteMarquee> {
   @override
   void initState() {
     super.initState();
-    _controller = InfiniteScrollController(
-        initialScrollOffset: widget.initialScrollOffset);
+    _controller = InfiniteScrollController(initialScrollOffset: widget.initialScrollOffset);
     _startScrollTimer();
   }
 
@@ -63,7 +66,7 @@ class _InfiniteMarqueeState extends State<InfiniteMarquee> {
   _startScrollTimer() {
     _timer = Timer.periodic(widget.frequency, (timer) {
       if (stopScroll == false) {
-        _controller.jumpTo(_controller.offset + widget.stepOffset);
+        _controller.animateTo(_controller.offset + widget.stepOffset, duration: widget.duration, curve: Curves.linear);
       }
     });
   }
@@ -106,7 +109,6 @@ class _InfiniteMarqueeState extends State<InfiniteMarquee> {
           controller: _controller,
           itemBuilder: widget.itemBuilder,
           separatorBuilder: widget.separatorBuilder,
-          anchor: 0.5,
         ),
       ),
     );
