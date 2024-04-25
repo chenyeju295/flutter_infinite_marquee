@@ -58,7 +58,8 @@ class _InfiniteMarqueeState extends State<InfiniteMarquee> {
   @override
   void initState() {
     super.initState();
-    _controller = InfiniteScrollController(initialScrollOffset: widget.initialScrollOffset);
+    _controller = InfiniteScrollController(
+        initialScrollOffset: widget.initialScrollOffset);
     _startScrollTimer();
   }
 
@@ -66,7 +67,8 @@ class _InfiniteMarqueeState extends State<InfiniteMarquee> {
   _startScrollTimer() {
     _timer = Timer.periodic(widget.frequency, (timer) {
       if (stopScroll == false) {
-        _controller.animateTo(_controller.offset + widget.stepOffset, duration: widget.duration, curve: Curves.linear);
+        _controller.animateTo(_controller.offset + widget.stepOffset,
+            duration: widget.duration, curve: Curves.linear);
       }
     });
   }

@@ -30,7 +30,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<String> _items = ['三字经', '水到渠成', '如鱼', '潜移默化', '帅', '人生苦短', '我用Flutter', '黑云压城城欲摧', '悬壶问道，月光转照'];
+  final List<String> _items = [
+    '三字经',
+    '水到渠成',
+    '如鱼',
+    '潜移默化',
+    '帅',
+    '人生苦短',
+    '我用Flutter',
+    '黑云压城城欲摧',
+    '悬壶问道，月光转照'
+  ];
 
   void _showToast(String item) {
     showDialog<void>(
@@ -64,9 +74,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     alignment: Alignment.centerLeft,
                     child: Container(
                         height: 34,
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 6),
                         margin: const EdgeInsets.symmetric(vertical: 8),
-                        decoration: BoxDecoration(color: Colors.greenAccent, borderRadius: BorderRadius.circular(10)),
+                        decoration: BoxDecoration(
+                            color: Colors.greenAccent,
+                            borderRadius: BorderRadius.circular(10)),
                         child: Text(item)),
                   );
                 },
@@ -84,14 +97,20 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(10),
-                        color: Colors.primaries[index % Colors.primaries.length],
-                        child: Center(child: Text(item, style: const TextStyle(fontSize: 20, color: Colors.white))),
+                        color:
+                            Colors.primaries[index % Colors.primaries.length],
+                        child: Center(
+                            child: Text(item,
+                                style: const TextStyle(
+                                    fontSize: 20, color: Colors.white))),
                       ),
                     );
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return Center(
-                        child: Icon(Icons.hail_sharp, color: Colors.primaries[index % Colors.primaries.length]));
+                        child: Icon(Icons.hail_sharp,
+                            color: Colors
+                                .primaries[index % Colors.primaries.length]));
                   },
                 )),
             Container(
@@ -106,8 +125,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       child: Container(
                         padding: const EdgeInsets.all(10),
-                        color: Colors.primaries[index % Colors.primaries.length],
-                        child: Center(child: Text(item, style: const TextStyle(fontSize: 20, color: Colors.white))),
+                        color:
+                            Colors.primaries[index % Colors.primaries.length],
+                        child: Center(
+                            child: Text(item,
+                                style: const TextStyle(
+                                    fontSize: 20, color: Colors.white))),
                       ),
                     );
                   },
@@ -129,8 +152,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                           child: Container(
                             padding: const EdgeInsets.all(10),
-                            color: Colors.primaries[index % Colors.primaries.length],
-                            child: Center(child: Text(item, style: const TextStyle(fontSize: 20, color: Colors.white))),
+                            color: Colors
+                                .primaries[index % Colors.primaries.length],
+                            child: Center(
+                                child: Text(item,
+                                    style: const TextStyle(
+                                        fontSize: 20, color: Colors.white))),
                           ),
                         );
                       },
@@ -150,8 +177,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           },
                           child: Container(
                             padding: const EdgeInsets.all(10),
-                            color: Colors.primaries[index % Colors.primaries.length],
-                            child: Center(child: Text(item, style: const TextStyle(fontSize: 20, color: Colors.white))),
+                            color: Colors
+                                .primaries[index % Colors.primaries.length],
+                            child: Center(
+                                child: Text(item,
+                                    style: const TextStyle(
+                                        fontSize: 20, color: Colors.white))),
                           ),
                         );
                       },
