@@ -1,4 +1,4 @@
-# flutter_infinite_marquee
+# [flutter_infinite_marquee](https://pub.dev/packages/flutter_infinite_marquee)
 
 一个提供自动滚动功能的跑马灯组件，用于将循环播放的文字或组件滚动到屏幕上。提供了自定义的滚动方向、步长、频率等参数，同时支持点击和滑动交互。
 可实现类似冒泡类和跑马灯滚动效果。
@@ -9,7 +9,7 @@
 
 ```yaml
 dependencies:
-  flutter_infinite_marquee: ^0.0.1
+  flutter_infinite_marquee: last_version
 ```
 
 ## 用法
