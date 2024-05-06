@@ -65,22 +65,26 @@ class _MyHomePageState extends State<MyHomePage> {
               margin: const EdgeInsets.all(30),
               height: 200,
               child: InfiniteMarquee(
+                frequency: const Duration(milliseconds: 20),
                 scrollDirection: Axis.vertical,
-                stepOffset: 50,
-                duration: const Duration(milliseconds: 1000),
                 itemBuilder: (BuildContext context, int index) {
                   String item = '${_items[index % _items.length]}  $index';
-                  return Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                        height: 34,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 6),
-                        margin: const EdgeInsets.symmetric(vertical: 8),
-                        decoration: BoxDecoration(
-                            color: Colors.greenAccent,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Text(item)),
+                  return GestureDetector(
+                    onTap: () {
+                      _showToast(item);
+                    },
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                          height: 34,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 6),
+                          margin: const EdgeInsets.symmetric(vertical: 8),
+                          decoration: BoxDecoration(
+                              color: Colors.greenAccent,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Text(item)),
+                    ),
                   );
                 },
               ),

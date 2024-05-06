@@ -34,7 +34,6 @@ SizedBox(
 - stepOffset: The distance of the scrolling step. The default is 1.
 - frequency: The frequency of automatic scrolling. The default is 10 milliseconds, which controls the scrolling 
   speed in conjunction with the stepOffset parameter.
-- duration: The duration of the animation when scrolling.
 - itemBuilder: A function used to build the components of the marquee items.
 - separatorBuilder: A function used to build the components of the separator.
 - initialScrollOffset: The initial scrolling offset when loading.

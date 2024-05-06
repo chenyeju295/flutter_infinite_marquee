@@ -1,3 +1,7 @@
+## 1.0.0
+
+* remove animation, fix click event bug.
+
 ## 0.0.3
 
 * Increase animation transition.

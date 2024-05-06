@@ -36,7 +36,6 @@ import 'package:flutter_marquee/flutter_marquee.dart';
 
 - `stepOffset`：滚动步进的距离。默认为1。
 - `frequency`：自动滚动的频率。默认为10毫秒，配合`stepOffset`参数控制滚动速度。
-- `duration`: 动画滚动时长，配合使用，可实现冒泡类效果。
 - `itemBuilder`：用于构建跑马灯项目组件的函数。
 - `separatorBuilder`：用于构建分隔符组件的函数。
 - `initialScrollOffset`：加载时的初始滚动偏移量。
