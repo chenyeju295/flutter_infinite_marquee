@@ -1,3 +1,7 @@
+## 2.0.1
+
+- Fix: after hot reload with negative speed, negative viewport could desync causing negative-index items to disappear and scroll gestures to stop. Now the listener is rebound each build to the current negative offset instance.
+
 ## 2.0.0
 
 Breaking changes and major improvements:

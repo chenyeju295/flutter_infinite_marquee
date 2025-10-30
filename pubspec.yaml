@@ -1,6 +1,6 @@
 name: flutter_infinite_marquee
 description: "Frame-driven, lifecycle-aware marquee with unified speed control and interaction."
-version: 2.0.0
+version: 2.0.1
 homepage: "https://github.com/chenyeju295/flutter_infinite_marquee"
 
 environment:
