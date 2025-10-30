@@ -422,23 +422,15 @@ class _InfiniteListViewState extends State<InfiniteListView> {
             negativeScroll: true,
           );
 
-          // Ensure only one listener is attached for the current offset
-          if (!identical(_attachedOffset, offset)) {
-            if (_attachedOffset != null && _attachedOffsetListener != null) {
-              _attachedOffset!.removeListener(_attachedOffsetListener!);
-            }
-            _attachedOffset = offset;
-            _attachedOffsetListener = () {
-              negativeOffset._forceNegativePixels(offset.pixels);
-            };
-            offset.addListener(_attachedOffsetListener!);
-          } else if (_attachedOffsetListener == null) {
-            // Recover if listener was lost
-            _attachedOffsetListener = () {
-              negativeOffset._forceNegativePixels(offset.pixels);
-            };
-            offset.addListener(_attachedOffsetListener!);
+          // Always (re)bind listener so it captures the current negativeOffset instance.
+          if (_attachedOffset != null && _attachedOffsetListener != null) {
+            _attachedOffset!.removeListener(_attachedOffsetListener!);
           }
+          _attachedOffset = offset;
+          _attachedOffsetListener = () {
+            negativeOffset._forceNegativePixels(offset.pixels);
+          };
+          offset.addListener(_attachedOffsetListener!);
 
           return Stack(
             children: <Widget>[
