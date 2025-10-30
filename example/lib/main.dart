@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
               margin: const EdgeInsets.all(30),
               height: 200,
               child: InfiniteMarquee(
-                frequency: const Duration(milliseconds: 20),
+                speed: 50, // ~1px per 20ms ≈ 50 px/s
                 scrollDirection: Axis.vertical,
                 itemBuilder: (BuildContext context, int index) {
                   String item = '${_items[index % _items.length]}  $index';
@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
                 height: 50,
                 child: InfiniteMarquee(
-                  stepOffset: -1,
+                  speed: -100, // reverse ~100 px/s
                   itemBuilder: (BuildContext context, int index) {
                     String item = '${_items[index % _items.length]}  $index';
                     return GestureDetector(
@@ -171,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: 40,
                     height: 400,
                     child: InfiniteMarquee(
-                      stepOffset: -2,
+                      speed: -120, // reverse
                       scrollDirection: Axis.vertical,
                       itemBuilder: (BuildContext context, int index) {
                         String item = _items[index % _items.length];

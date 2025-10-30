@@ -1,6 +1,6 @@
 name: flutter_infinite_marquee
-description: "A marquee component that provides automatic scrolling,Support interaction."
-version: 1.0.0
+description: "Frame-driven, lifecycle-aware marquee with unified speed control and interaction."
+version: 2.0.0
 homepage: "https://github.com/chenyeju295/flutter_infinite_marquee"
 
 environment:

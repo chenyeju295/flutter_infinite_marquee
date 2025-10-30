@@ -2,7 +2,8 @@
 
 [中文文档](README-CN.md)
 
-A marquee component that provides the function of automatic scrolling, used to scroll the text or components that play in a loop onto the screen. It provides custom scrolling directions, step lengths, frequencies and other parameters, and also supports click and swipe interactions.
+Frame-driven, lifecycle-aware marquee with unified speed control.
+Smooth automatic scrolling of looping text or widgets with click/drag interaction support.
 
 
 ## Installation
@@ -16,32 +17,35 @@ dependencies:
 Import the package in your Dart file.
 
 ```dart
-import 'package:flutter_marquee/flutter_marquee.dart';
+import 'package:flutter_infinite_marquee/flutter_infinite_marquee.dart';
 ```
 
 ```dart
 SizedBox(
-      height: 50,
-      child:InfiniteMarquee(
-          itemBuilder: (BuildContext context, int index) {
-            return Text('Hello, world! $index');
-          },
-      ),
-    )
+  height: 50,
+  child: InfiniteMarquee(
+    speed: 60, // pixels per second; negative for reverse
+    itemBuilder: (BuildContext context, int index) {
+      return Text('Hello, world! $index');
+    },
+    separatorBuilder: (context, index) => const SizedBox(width: 12),
+  ),
+)
 ```
 
 ## Parameters
-- stepOffset: The distance of the scrolling step. The default is 1.
-- frequency: The frequency of automatic scrolling. The default is 10 milliseconds, which controls the scrolling 
-  speed in conjunction with the stepOffset parameter.
-- itemBuilder: A function used to build the components of the marquee items.
-- separatorBuilder: A function used to build the components of the separator.
-- initialScrollOffset: The initial scrolling offset when loading.
-- scrollDirection: The direction in which the marquee scrolls.
+- `speed`: logical pixels per second (double, required). Negative scrolls in reverse.
+- `autoplay`: start automatically (default true).
+- `controller`: `MarqueeController` for `play()`, `pause()`, `setSpeed()`.
+- `scrollDirection`: `Axis.horizontal` or `Axis.vertical`.
+- `itemBuilder`: builder for item at index.
+- `separatorBuilder`: optional builder between items.
+- `itemCount`: optional finite items; `null` means unbounded.
+- `itemExtent`: optional fixed extent to improve performance.
+- `physics`, `padding`, `initialScrollOffset`.
 
 ## Sample diagram
 ![sample_diagram.gif](sample_diagram.gif)
 
 
-Feel free to customize the marquee component to meet the needs of your application.
-If you encounter any problems or have suggestions for improvement, please create an issue on [GitHub issues](https://github.com/chenyeju295/flutter_infinite_marquee/issues) at any time. Thank you for using!
+If you encounter any problems or have suggestions, please create an issue on [GitHub issues](https://github.com/chenyeju295/flutter_infinite_marquee/issues). Thank you for using!

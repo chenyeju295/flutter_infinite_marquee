@@ -1,7 +1,6 @@
 # [flutter_infinite_marquee](https://pub.dev/packages/flutter_infinite_marquee)
 
-一个提供自动滚动功能的跑马灯组件，用于将循环播放的文字或组件滚动到屏幕上。提供了自定义的滚动方向、步长、频率等参数，同时支持点击和滑动交互。
-可实现类似冒泡类和跑马灯滚动效果。
+基于帧驱动且支持生命周期感知的跑马灯组件，统一以 `speed`（像素/秒）控制滚动速度，支持点击与拖拽交互，滚动更平滑。
 
 ## 安装
 
@@ -17,29 +16,34 @@ dependencies:
 在你的Dart文件中导入该包。
 
 ```dart
-import 'package:flutter_marquee/flutter_marquee.dart';
+import 'package:flutter_infinite_marquee/flutter_infinite_marquee.dart';
 ```
 在你的Flutter应用程序中使用`InfiniteMarquee`组件。
 
 ```dart
-    SizedBox(
-      height: 50,
-      child:InfiniteMarquee(
-          itemBuilder: (BuildContext context, int index) {
-            return Text('Hello, world! $index');
-          },
-      ),
-    )
+SizedBox(
+  height: 50,
+  child: InfiniteMarquee(
+    speed: 60, // 像素/秒；负值反向
+    itemBuilder: (BuildContext context, int index) {
+      return Text('Hello, world! $index');
+    },
+    separatorBuilder: (context, index) => const SizedBox(width: 12),
+  ),
+)
 ```
 
 ## 参数
 
-- `stepOffset`：滚动步进的距离。默认为1。
-- `frequency`：自动滚动的频率。默认为10毫秒，配合`stepOffset`参数控制滚动速度。
-- `itemBuilder`：用于构建跑马灯项目组件的函数。
-- `separatorBuilder`：用于构建分隔符组件的函数。
-- `initialScrollOffset`：加载时的初始滚动偏移量。
-- `scrollDirection`：跑马灯滚动的方向。
+- `speed`：逻辑像素/秒（必填），负值代表反向滚动。
+- `autoplay`：是否自动开始（默认 true）。
+- `controller`：`MarqueeController`，提供 `play()`、`pause()`、`setSpeed()`。
+- `scrollDirection`：`Axis.horizontal` 或 `Axis.vertical`。
+- `itemBuilder`：构建每个条目的组件。
+- `separatorBuilder`：构建分隔符的组件（可选）。
+- `itemCount`：可选，指定有限条目数；为空则无限。
+- `itemExtent`：可选，固定尺寸以提升性能。
+- `physics`、`padding`、`initialScrollOffset`。
 
 
 ## 示例图

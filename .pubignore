@@ -1,0 +1,2 @@
+# Exclude legacy file removed from the package API surface
+lib/infinite_list_view.dart
