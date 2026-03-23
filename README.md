@@ -5,6 +5,9 @@
 Frame-driven, lifecycle-aware marquee with unified speed control.
 Smooth automatic scrolling of looping text or widgets with click/drag interaction support.
 
+## Sample diagram
+![sample_diagram.gif](sample_diagram.gif)
+
 
 ## Installation
 To use this package, add flutter_infinite_marquee as a dependency in the pubspec.yaml file.
@@ -43,9 +46,6 @@ SizedBox(
 - `itemCount`: optional finite items; `null` means unbounded.
 - `itemExtent`: optional fixed extent to improve performance.
 - `physics`, `padding`, `initialScrollOffset`.
-
-## Sample diagram
-![sample_diagram.gif](sample_diagram.gif)
 
 
 If you encounter any problems or have suggestions, please create an issue on [GitHub issues](https://github.com/chenyeju295/flutter_infinite_marquee/issues). Thank you for using!
