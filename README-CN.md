@@ -1,6 +1,9 @@
 # [flutter_infinite_marquee](https://pub.dev/packages/flutter_infinite_marquee)
 
-基于帧驱动且支持生命周期感知的跑马灯组件，统一以 `speed`（像素/秒）控制滚动速度，支持点击与拖拽交互，滚动更平滑。
+基于帧驱动且支持生命周期感知的Flutter跑马灯组件，统一以 `speed`（像素/秒）控制滚动速度，支持点击与拖拽交互，滚动更平滑。
+
+## 示例图
+![sample_diagram.gif](sample_diagram.gif)
 
 ## 安装
 
@@ -45,9 +48,6 @@ SizedBox(
 - `itemExtent`：可选，固定尺寸以提升性能。
 - `physics`、`padding`、`initialScrollOffset`。
 
-
-## 示例图
-![sample_diagram.gif](sample_diagram.gif)
 
 请随意定制组件以满足你的应用程序需求。
 如果遇到任何问题或有改进建议，请随时在[GitHub issues](https://github.com/chenyeju295/flutter_infinite_marquee/issues)上创建问题。感谢使用！
